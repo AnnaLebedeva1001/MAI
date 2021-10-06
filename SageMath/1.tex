@@ -1,0 +1,1802 @@
+\documentclass[12pt]{extreport}
+\usepackage[left=2.5cm, right=1.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{indentfirst}
+\usepackage[T2A]{fontenc}
+\usepackage[english,russian]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[usenames]{color}
+%\usepackage{hyperref}
+\usepackage{sagetex}
+\setlength{\sagetexindent}{10ex}
+\linespread{1.3}
+%\renewcommand{\baselinestretch}{1.5}
+\renewcommand{\thesection}{\number\numexpr\value{section}-1\relax}
+\renewcommand{\thesubsection}{\thesection.\number\numexpr\value{subsection}-1\relax}
+\renewcommand{\thesubsubsection}{\thesubsection.\number\numexpr\value{subsubsection}-1\relax}
+\setcounter{secnumdepth}{1}
+\setcounter{chapter}{1}
+\setcounter{section}{1}
+\setcounter{page}{2}
+
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+    \definecolor{ansi-default-inverse-fg}{HTML}{FFFFFF}
+    \definecolor{ansi-default-inverse-bg}{HTML}{000000}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatibility definitions
+    \def\gt{>}
+    \def\lt{<}
+    \let\Oldtex\TeX
+    \let\Oldlatex\LaTeX
+    \renewcommand{\TeX}{\textrm{\Oldtex}}
+    \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
+    % Document parameters
+    % Document title
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+    \begin{document}
+\begin{center}
+Московский Авиационный институт \\
+(Национальный исследовательский университет)
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\Large Институт №8 \\
+\large «Информационные технологии и прикладная математика» \\
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+	\large Кафедра 813 \\
+	«Компьютерная математика» \\
+\end{center}
+
+\vspace{1em}
+
+\begin{center}
+\large Курсовой проект \\
+по дисциплине \\
+«Математический практикум»\\
+\end{center}
+
+\begin{center}
+	\Large Тема:\\
+	\large«Математические вычисления в \\
+	пакете Sage»
+\end{center}
+
+\begin{center}
+\Large ВАРИАНТ №16\\
+\end{center}
+
+{\large 
+
+\hfill\parbox{11cm}{
+\hspace*{10cm}\hspace*{-5cm}Студент:\hfill\hbox {Лебедева Анна \hfill}\\
+\hspace*{10cm}\hspace*{-5cm}\hfill\hbox {Ильинична\hfill}\vspace{2mm}
+
+\hspace*{10cm}\hspace*{-5cm}Группа:\hfill\hbox {М8О-210Б-19}\vspace{2mm}
+\hspace*{10cm}\hspace*{-5cm}Преподаватели:
+ \hfill\hbox {Денисова И. П.}\\
+\hspace*{10cm}\hspace*{-5cm}\hfill\hbox {Гавриш О. Н.}\\
+\hspace*{10cm}\hspace*{-5cm}\hfill\hbox {Ганичева А. К.}\\
+\hspace*{10cm}\hspace*{-5cm}\hfill\hbox {Пасисниченко М. А.}\vspace{2mm}
+\hspace*{10cm}\hspace*{-5cm}Оценка:\hfill\hbox {}\vspace{2mm}
+\hspace*{10cm}\hspace*{-5cm}Дата:\hfill\hbox {}\\
+\vspace{\fill}
+
+\begin{center}
+Москва 2020г.
+\end{center}
+
+
+\newpage
+    \tableofcontents
+\newpage
+    \section{Исследование графиков функций}
+
+    Заданная формула функции:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+    $y = (2^{\tan(2*x)} + \tan(2*x))^2$
+
+
+    \subsubsection{Область определения}
+    
+    Область определения функции - это множество точек, на каждой из которых функция имеет значение. Рассмотрим
+функцию $f(x)$: y = \tan{(x)}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{D} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{D}\PY{p}{)}
+\end{Verbatim}
+
+$[\frac{-\pi}{2};\frac{\pi}{2}]$
+
+    \subsubsection{Четность/нечетность}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{if} \PY{p}{(}\PY{n}{y}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)} \PY{o}{!=} \PY{n}{y}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Функция не является четной}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Функция является четной}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        
+        \PY{k}{if} \PY{p}{(}\PY{n}{y}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)} \PY{o}{!=} \PY{o}{\PYZhy{}}\PY{n}{y}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Функция не является нечетной}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Функция является нечетной}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{verbatim}
+Функция не является четной.
+    \end{verbatim}
+    \begin{verbatim}
+Функция не является нечетной.
+    \end{verbatim}
+
+    
+    \subsubsection{Периодичность}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{T} \PY{o}{=} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Функция с периодом: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{T}\PY{p}{)}
+\end{Verbatim}
+
+
+Функция с периодом:  $\frac{\pi}{2}$
+    
+    \subsubsection{Точки пересечения функции с осями координат}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{p\PYZus{}x} \PY{o}{=} \PY{n}{y}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y(0) = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{p\PYZus{}x}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+y(0) =  1
+    \end{verbatim}
+    
+    График пересекает ось Oy в точке (0, 1).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{xx1} \PY{o}{=} \PY{n}{find\PYZus{}root}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{xx1}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}6}]:} -0.2850769650206669
+\end{Verbatim}
+            
+    График пересекает ось Ox в точке (-0.2850769650206669, 0).
+
+    \subsubsection{Промежутки знакопостоянства}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{D} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{Infinity}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2850769650206669}\PY{p}{)}
+        \PY{n}{R} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mf}{0.2850769650206669}\PY{p}{,} \PY{n}{Infinity}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{D}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{⋃}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{R}\PY{p}{)}
+\end{Verbatim}
+
+
+$(-\infty, -0.285076965020667) ⋃ (-0.285076965020667, \infty)$
+
+    
+    \subsubsection{Промежутки возрастания и убывания}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{Fd} \PY{o}{=} \PY{n}{y}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{Fd}\PY{p}{)}
+\end{Verbatim}
+
+
+$4*((\tan(2*x)^2 + 1)*2^{\tan(2*x)}*\log(2) + \tan(2*x)^2 + 1)*(2^{\tan(2*x)} + \tan(2*x))$
+    
+    Промежутки возрастания функции пересеченные с одз.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{n}{Fd} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{x} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{x\PYZus{}0}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+[[-1/2*pi < x, 2^tan(2*x) + tan(2*x) > 0], [x == -1/2*pi, 1 > 0]]
+    \end{verbatim}
+
+    
+    Промежутков убывания функции нет.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{x\PYZus{}0} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{n}{Fd} \PY{o}{\PYZlt{}} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{x} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{x\PYZus{}0}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+[[-1/2*pi < x, -2^tan(2*x) - tan(2*x) > 0], [x == -1/2*pi, -1 > 0]]
+    \end{verbatim}
+
+    
+    Знаки производной функции:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{find\PYZus{}root}\PY{p}{(}\PY{n}{Fd} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}11}]:} -0.2850769652326084
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ y(x) ↑: x ∈ (\PYZhy{}∞,\PYZhy{}0.2850769652326084)}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+' y(x) ↑: x ∈ (-∞,-0.2850769652326084)'
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ y(x) ↑: x ∈ (\PYZhy{}0.2850769652326084, +∞) }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+' y(x) ↑: x ∈ (-0.2850769652326084, +∞) '
+    \end{verbatim}
+
+    
+    При переходе через точку x = -0.2850769652326084 функция f(x) не меняет свой характер, поэтому критических точек у функции нет.
+
+    \subsubsection{Поведение функции в окрестности «особых» точек и при больших по модулю x}
+
+    Особых точек у функции нет.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{show}\PY{p}{(}\PY{n}{y}\PY{p}{(}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{p}{(}\PY{l+m+mi}{500}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{100}\PY{p}{)}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{;}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{y}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{500}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    $(2^{\tan(200)} + \tan(200))^2; (2^{\tan(1000)} + \tan(1000))^2; (({\frac{1}{2}})^{\tan(200)} - \tan(200))^2; (({\frac{1}{2}})^{\tan(1000)} - \tan(1000))^2$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{Fdd} \PY{o}{=} \PY{n}{Fd}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{Fdd}\PY{p}{)}
+\end{Verbatim}
+
+
+$8*((\tan(2*x)^2 + 1)*2^{\tan(2*x)}*\log(2) + tan(2*x)^2 + 1)^2 + 8*((\tan(2*x)^2 + 1)^2*2^{\tan(2*x)}*\log(2)^2 + 2*(\tan(2*x)^2 + 1)*2^{\tan(2*x)}*\log(2)*\tan(2*x) + 2*(\tan(2*x)^2 + 1)*\tan(2*x))*(2^{\tan(2*x)} + \tan(2*x))$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{c+c1}{\PYZsh{}show(find\PYZus{}root(Fdd == 0, \PYZhy{}pi/2, pi/2))}
+         \PY{n}{r} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{Fdd} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{r}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+[]
+    \end{verbatim}
+
+    Kорней нет, поэтому точек перегиба нет.
+
+    \subsubsection{Непрерывность. Наличие точек разрыва и их классификация}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{lim}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}17}]:} 1
+\end{Verbatim}
+            
+    Точек разрыва не обнаружено.
+
+    \subsubsection{Асимптоты}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Уравнение асимптот: y = kx + b}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{k} \PY{o}{=} \PY{n}{limit}\PY{p}{(}\PY{p}{(}\PY{n}{y}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{/}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{x} \PY{o}{=} \PY{n}{infinity}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{k=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{k}\PY{p}{)}
+         \PY{n}{b} \PY{o}{=} \PY{n}{limit}\PY{p}{(}\PY{p}{(}\PY{n}{y}\PY{p}{(}\PY{n}{x}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{k}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{p}{,} \PY{n}{x} \PY{o}{=} \PY{n}{infinity}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{b= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Горизонтальная асимптота: y= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{k}\PY{o}{*}\PY{n}{x}\PY{o}{+}\PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+
+Уравнение асимптот: y = kx + b
+    
+    \begin{verbatim}
+k=0
+    \end{verbatim}
+
+    \begin{verbatim}
+b=0
+    \end{verbatim}
+    \begin{verbatim}
+Горизонтальная асимптота: y=0
+    \end{verbatim}
+
+    \subsubsection{График функции}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{y} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{tan}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{+} \PY{n}{list\PYZus{}plot}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{xx1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{65}\PY{p}{,} \PY{n}{rgbcolor}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}19}]:}
+
+\begin{sagesilent}
+y = (2^tan(2*x) + tan(2*x))^2
+xx1 = find_root((2^tan(2*x) + tan(2*x))^2 == 0, -1, 0)
+plot(y, -1.57, 1.57) + list_plot([(xx1, 0)], size=65, rgbcolor="red")
+\end{sagesilent}
+\sageplot{plot(y, -1.57, 1.57) + list_plot([(xx1, 0)], size=65, rgbcolor="red")}\eqn(1)
+
+
+\section{Задание №2. СЛАУ}
+
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Решить методом Крамера
+\end{enumerate}
+
+Найдем решение системы линейных алгебраических уравнений (СЛАУ)\\$\begin{cases}4x_1 + 2x_2 -x_3 = -1\\
+-3x_1 - x_2 + x_3 = -1\\ -x_1 + 4x_2 + 5x_3 = -8\end{cases}$.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{M} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{A} \PY{o}{=} \PY{n}{M}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}   \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,}   \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Матрица А: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{A}\PY{p}{)}
+\end{Verbatim}
+
+
+Матрица А: $\begin{pmatrix}4&2&-1\\-3&-1&1\\-1&4&5\end{pmatrix}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{B} \PY{o}{=} \PY{n}{vector}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+\end{Verbatim}
+
+$B: \begin{pmatrix}
+-1\\-1\\-8\end{pmatrix}$
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{det} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{determinant}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Определитель А: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{det}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Определитель А: 5
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{a1} \PY{o}{=} \PY{n}{copy}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{a1}\PY{o}{.}\PY{n}{set\PYZus{}column}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a1: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a1}\PY{p}{)}
+        \PY{n}{d1} \PY{o}{=} \PY{n}{a1}\PY{o}{.}\PY{n}{determinant}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Определитель a1: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{d1}\PY{p}{)}
+\end{Verbatim}
+
+
+$a1: \begin{pmatrix}-1&2&-1\\-1&-1&1\\-8&4&5\end{pmatrix}$
+    
+    \begin{verbatim}
+Определитель a1: 15
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{a2} \PY{o}{=} \PY{n}{copy}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{a2}\PY{o}{.}\PY{n}{set\PYZus{}column}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a2:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a2}\PY{p}{)}
+        \PY{n}{d2} \PY{o}{=} \PY{n}{a2}\PY{o}{.}\PY{n}{determinant}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Определитель а2: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{d2}\PY{p}{)}
+\end{Verbatim}
+
+$a2: \begin{pmatrix}4&-1&-1\\-3&-1&1\\-1&-8&5\end{pmatrix}$
+
+  \begin{verbatim}
+Определитель а2: -25
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{a3} \PY{o}{=} \PY{n}{copy}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{a3}\PY{o}{.}\PY{n}{set\PYZus{}column}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a3:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a3}\PY{p}{)}
+        \PY{n}{d3} \PY{o}{=} \PY{n}{a3}\PY{o}{.}\PY{n}{determinant}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Определитель а3: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{d3}\PY{p}{)}
+\end{Verbatim}
+
+$a3:\begin{pmatrix}4&2&-1\\-3&-1&-1\\-1&4&-8\end{pmatrix}$
+
+
+    \begin{verbatim}
+Определитель а3: 15
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{x1} \PY{o}{=} \PY{n}{d1}\PY{o}{/}\PY{n}{det}
+        \PY{n}{x2} \PY{o}{=} \PY{n}{d2}\PY{o}{/}\PY{n}{det}
+        \PY{n}{x3} \PY{o}{=} \PY{n}{d3}\PY{o}{/}\PY{n}{det}
+        \PY{n}{show} \PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Ответ:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{x2}\PY{p}{,} \PY{n}{x3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Ответ: x = (3, -5, 3)
+    \end{verbatim}
+
+    
+    \begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Решить методом Гаусса и проверить на совместность
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{N} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{A\PYZus{}full} \PY{o}{=} \PY{n}{N}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}   \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}   \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{8}\PY{p}{]}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{A\PYZus{}full}\PY{p}{)}
+\end{Verbatim}
+
+$\begin{pmatrix}4&2&-1&-1\\3&-1&1&-1\\-1&4&5&-8\end{pmatrix}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{r\PYZus{}A} \PY{o}{=} \PY{n}{A}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)}
+        \PY{n}{r\PYZus{}A\PYZus{}full} \PY{o}{=} \PY{n}{A\PYZus{}full}\PY{o}{.}\PY{n}{rank}\PY{p}{(}\PY{p}{)}
+        \PY{k}{if} \PY{p}{(}\PY{n}{r\PYZus{}A} \PY{o}{==} \PY{n}{r\PYZus{}A\PYZus{}full}\PY{p}{)}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Система совместна}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Система несовместна}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{verbatim}
+Система совместна
+    \end{verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{x} \PY{o}{=} \PY{n}{A\PYZus{}full}\PY{o}{.}\PY{n}{rref}\PY{p}{(}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+\end{Verbatim}
+
+$\begin{pmatrix}1&0&0&3\\0&1&0&-5\\0&0&1&3\end{pmatrix}$
+
+    \begin{verbatim}
+Ответ: x = (3, -5, 3)
+    \end{verbatim}
+
+\section{Задание №3. Матрицы --- Матричные уравнения}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{W} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{W1} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{6}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+        \PY{n}{W2} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{9}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+        \PY{n}{W3} \PY{o}{=} \PY{n}{W}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Исходное матричное уравнение: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}3X}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{W1}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZhy{}1/4}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{W2}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{\PYZca{}2=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{W3}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Исходное матричное уравнение: 
+    \end{verbatim}
+
+    
+$-\frac{1}{4}\begin{pmatrix}-2&4&-6\\-1&0&-2\\4&4&2\end{pmatrix}^2-3X\begin{pmatrix}1&0&-3\\-1&2&-4\\2&0&2\end{pmatrix} =\begin{pmatrix}2&8&-9\\-1&1&4\\1&0&2\end{pmatrix}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{T1} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)} \PY{o}{*} \PY{p}{(}\PY{n}{W1}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{T2} \PY{o}{=} \PY{p}{(}\PY{n}{T1} \PY{o}{\PYZhy{}} \PY{n}{W2}\PY{p}{)} \PY{o}{/} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{T3} \PY{o}{=} \PY{n}{W3}\PY{o}{\PYZca{}}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+        \PY{n}{result} \PY{o}{=} \PY{n}{T2} \PY{o}{*} \PY{n}{T3}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{show}\PY{p}{(}\PY{n}{result}\PY{p}{)}
+\end{Verbatim}
+    
+    $\begin{pmatrix}\frac{7}{12}&0&-\frac{23}{24}\\-\frac{1}{3}&-\frac{1}{3}&-\frac{5}{12}\\-\frac{1}{3}&1&\frac{2}{3}\end{pmatrix}$
+
+   \section{Задание №4. Решение алгебр. уравнений 3й степени}
+
+    Должны привести уравнение к виду:
+\[x^3 + a\cdot x^2 + b\cdot x + c = 0\] Сделать замену:
+\(x = z - \frac{a}{3}\) Получим: \[z^3 + p\cdot z + q = 0\] Вычисляем:
+\[u = \left(-\frac{q}{2} + \left(\frac{q^2}{4} + \frac{p^3}{27}\right)^{1/2}\right)^{1/3}\]
+\[v = \left(-\frac{q}{2} - \left(\frac{q^2}{4} + \frac{p^3}{27}\right)^{1/2}\right)^{1/3}\]
+
+Берем u1 (где u1 - какое-то значение u) v1 вычисляем из
+\(3\cdot u\cdot v + p = 0\) Вычисляем
+\(\varepsilon = -1/2 + i\cdot\frac{\sqrt{3}}{2}\) Корни z:
+\(z1 = u1 + v1\) \(z2 = u1\cdot \varepsilon + v1\cdot \varepsilon^2\)
+\(z3 = v1\cdot \varepsilon + u1\cdot \varepsilon^2\) И далее
+возвращаемся к замене \(x = z - \frac{a}{3}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{poly\PYZus{}x} \PY{o}{=} \PY{l+m+mi}{4}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+}\PY{l+m+mi}{7}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}
+        \PY{n}{poly\PYZus{}x} \PY{o}{/}\PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{)}
+        \PY{n}{plot}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+$4x^3 - 2x^2 + 7x - 3 = 0$
+
+    \texttt{\color{outcolor}Out[{\color{outcolor}1}]:}
+
+\begin{sagesilent}
+g = 4*x^3 - 2*x^2 + 7*x - 3
+xx1 = find_root(g == 0, 0, 2)
+plot(g, -1, 2) + list_plot([(xx1, 0)], size=65, rgbcolor="red")\end{sagesilent}
+
+\sageplot{plot(g, -1, 2) + list_plot([(xx1, 0)], size=65, rgbcolor="red")}\eqn(2)
+
+
+    Сделаем замену x = z - a/3
+
+    Внимание!
+
+\(a\) - это коэф. при \(x^2\), не при \(x\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{poly\PYZus{}x}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}2}]:} x\^{}3 - 1/2*x\^{}2 + 7/4*x - 3/4
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{a} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a}\PY{p}{)}
+        \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{poly\PYZus{}z} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{z} \PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{a}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+a = -1/2
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{poly\PYZus{}z} \PY{o}{=} \PY{n}{poly\PYZus{}z}\PY{o}{.}\PY{n}{expand}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}z}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+z^3 + 5/3*z - 101/216
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{poly\PYZus{}z} \PY{o}{/}\PY{o}{=} \PY{n}{poly\PYZus{}z}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}z}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+z^3 + 5/3*z - 101/216
+    \end{verbatim}
+
+    
+    \(z^3 + p\cdot z + q = 0\) Отсюда:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{pq} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{poly\PYZus{}z}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{poly\PYZus{}z}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{z}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{\PYZcb{}}
+        \PY{n}{show}\PY{p}{(}\PY{n}{pq}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+{p: 5/3, q: -101/216}
+    \end{verbatim}
+
+    
+    Вычисляем:
+\[u = \left(-\frac{q}{2} + \left(\frac{q^2}{4} + \frac{p^3}{27}\right)^{1/2}\right)^{1/3}\]
+\[v = \left(-\frac{q}{2} - \left(\frac{q^2}{4} + \frac{p^3}{27}\right)^{1/2}\right)^{1/3}\]
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{k}{def} \PY{n+nf}{safe\PYZus{}cubic\PYZus{}root}\PY{p}{(}\PY{n}{\PYZus{}in\PYZus{}param}\PY{p}{)}\PY{p}{:}
+            \PY{k}{if} \PY{n}{\PYZus{}in\PYZus{}param}\PY{o}{.}\PY{n}{imag}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+                \PY{c+c1}{\PYZsh{} sgn для комплексного числа выдаст ошибку в дальнейшем, когда будет вызван numerical\PYZus{}approx}
+                \PY{c+c1}{\PYZsh{} поэтому придется просто возводить в степень}
+                \PY{k}{return} \PY{p}{(}\PY{n}{\PYZus{}in\PYZus{}param}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+            \PY{k}{else}\PY{p}{:}
+                \PY{k}{return} \PY{n}{sgn}\PY{p}{(}\PY{n}{\PYZus{}in\PYZus{}param}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{\PYZus{}in\PYZus{}param}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{p q da}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{} da \PYZhy{} выносим отдельно и объявляем \PYZus{}после\PYZus{} формул \PYZdq{}u\PYZdq{} и \PYZdq{}v\PYZdq{}}
+        \PY{c+c1}{\PYZsh{} потому как так отлаживать удобнее}
+        \PY{n}{u\PYZus{}pre} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{q}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{sqrt}\PY{p}{(}\PY{n}{da}\PY{p}{)}
+        \PY{n}{v\PYZus{}pre} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{q}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{sqrt}\PY{p}{(}\PY{n}{da}\PY{p}{)}
+        \PY{n}{da} \PY{o}{=} \PY{n}{q}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{4} \PY{o}{+} \PY{n}{p}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{o}{/}\PY{l+m+mi}{27}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{show}\PY{p}{(}\PY{n}{da}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+1/27*p^3 + 1/4*q^2
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{show}\PY{p}{(}\PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+521/2304
+    \end{verbatim}
+
+    
+    Берем u1 (где u1 - какое-то значение u)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{da = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}
+         \PY{n}{u1} \PY{o}{=} \PY{n}{safe\PYZus{}cubic\PYZus{}root}\PY{p}{(}\PY{n}{u\PYZus{}pre}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{,} \PY{n}{da}\PY{o}{=}\PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{u1 = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u1}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+da = 521/2304
+    \end{verbatim}
+
+    \begin{verbatim}
+u1 = 0.8918
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{u1\PYZus{}2} \PY{o}{=} \PY{n}{safe\PYZus{}cubic\PYZus{}root}\PY{p}{(}\PY{n}{u\PYZus{}pre}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{,} \PY{n}{da}\PY{o}{=}\PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{u1\PYZus{}2 = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{u1\PYZus{}2}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+u1_2 = 0.8918
+    \end{verbatim}
+
+    
+    v1 вычисляем из \(3\cdot u\cdot v + p = 0\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{v1}\PY{o}{=}\PY{n}{safe\PYZus{}cubic\PYZus{}root}\PY{p}{(}\PY{n}{v\PYZus{}pre}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{,} \PY{n}{da}\PY{o}{=}\PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{v1}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{v1}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+-abs(-1/48*sqrt(521) + 101/432)^(1/3)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+-0.6229
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{v1\PYZus{}2} \PY{o}{=} \PY{n}{v\PYZus{}pre}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{,} \PY{n}{da}\PY{o}{=}\PY{n}{da}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{v1\PYZus{}2}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+0.3115 + 0.5395*I
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{k}{def} \PY{n+nf}{v1\PYZus{}func}\PY{p}{(}\PY{n}{\PYZus{}p}\PY{p}{,} \PY{n}{\PYZus{}u}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{o}{\PYZhy{}}\PY{n}{\PYZus{}p}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{3}\PY{o}{*}\PY{n}{\PYZus{}u}\PY{p}{)}
+         
+         
+         \PY{n}{v1} \PY{o}{=} \PY{n}{v1\PYZus{}func}\PY{p}{(}\PY{n}{\PYZus{}p}\PY{o}{=}\PY{n}{pq}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{\PYZus{}u}\PY{o}{=}\PY{n}{u1\PYZus{}2}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{v1}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{v1}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+-20/3*(1/2)^(2/3)/(9*sqrt(521) + 101)^(1/3)
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+-0.6229
+    \end{verbatim}
+
+    
+    Вычисляем \(\varepsilon = -1/2 + i\cdot\frac{\sqrt{3}}{2}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{Eps} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2} \PY{o}{+} \PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+         \PY{n}{show}\PY{p}{(}\PY{n}{Eps}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+1/2*sqrt(-3) - 1/2
+    \end{verbatim}
+
+    
+    Корни z: \(z1 = u1 + v1\)
+\(z2 = u1\cdot \varepsilon + v1\cdot \varepsilon^2\)
+\(z3 = v1\cdot \varepsilon + u1\cdot \varepsilon^2\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{z} \PY{o}{=} \PY{p}{[}\PY{n}{u1} \PY{o}{+} \PY{n}{v1}
+              \PY{p}{,} \PY{n}{u1}\PY{o}{*}\PY{n}{Eps} \PY{o}{+} \PY{n}{v1}\PY{o}{*}\PY{n}{Eps}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{p}{,} \PY{n}{v1}\PY{o}{*}\PY{n}{Eps} \PY{o}{+} \PY{n}{u1}\PY{o}{*}\PY{n}{Eps}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+             \PY{p}{]}
+         
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{zi} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{zi}\PY{o}{.}\PY{n}{simplify}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{zi} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{z}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{zi}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+   $z0 = 1/12*2^{(2/3)}*(9*\sqrt(521) + 101)^{(1/3)} - 10/3*2^{(1/3){/(9*\sqrt(521) + 101)^{(1/3)}$
+
+    
+$z1 =  1/24*2^{(2/3)}*(9*\sqrt(521) + 101)^{(1/3)}*(\I*\sqrt(3) - 1) - 5/6*2^{(1/3)}*(I*\sqrt(3) - 1)^2/(9*\sqrt(521) + 101)^{(1/3)}$
+
+$z2 = 1/48*2^{(2/3)}*(9*\sqrt(521) + 101)^{(1/3)}*(\I*\sqrt(3) - 1)^2 - 5/3*2^{(1/3)}*(\I*\sqrt(3) - 1)/(9*\sqrt(521) + 101)^{(1/3)}$
+
+    \begin{verbatim}
+z0 = 0.2689
+    \end{verbatim}
+
+    \begin{verbatim}
+z1 = -0.1344 + 1.312*I
+    \end{verbatim}
+
+    \begin{verbatim}
+z2 = -0.1344 - 1.312*I
+    \end{verbatim}
+
+    
+    Теперь ищем D, чтобы сверить, какие корни получились, какие должны быть
+и пр.: D \textless{} 0: 1 действительный, два комплексных корня D == 0:
+три действительных корня, два из них равные D \textgreater{} 0 - три
+действительных и различных
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{D} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{4}\PY{o}{*}\PY{n}{p}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{l+m+mi}{27}\PY{o}{*}\PY{n}{q}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{D}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pq}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}19}]:} -1563/64
+\end{Verbatim}
+            
+    Вернемся к подстановке: x = z - a/3
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{a} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+         
+         
+         \PY{k}{def} \PY{n+nf}{from\PYZus{}z\PYZus{}to\PYZus{}x}\PY{p}{(}\PY{n}{\PYZus{}z}\PY{p}{,} \PY{n}{\PYZus{}a}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{\PYZus{}z} \PY{o}{\PYZhy{}} \PY{n}{\PYZus{}a}\PY{o}{/}\PY{l+m+mi}{3}
+         
+         
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{zi} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{z}\PY{p}{)}\PY{p}{:}
+             \PY{n}{xi} \PY{o}{=} \PY{n}{from\PYZus{}z\PYZus{}to\PYZus{}x}\PY{p}{(}\PY{n}{\PYZus{}z}\PY{o}{=}\PY{n}{zi}\PY{p}{,} \PY{n}{\PYZus{}a}\PY{o}{=}\PY{n}{a}\PY{p}{)}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{xi}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+x0 = 0.4355
+    \end{verbatim}
+
+    \begin{verbatim}
+x1 = 0.03222 + 1.312*I
+    \end{verbatim}
+
+    \begin{verbatim}
+x2 = 0.03223 - 1.312*I
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{sols} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{(}\PY{p}{)}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{sol} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{sols}\PY{p}{)}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{sol}\PY{o}{.}\PY{n}{rhs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+x0 = 0.03223 - 1.312*I
+    \end{verbatim}
+
+    \begin{verbatim}
+x1 = 0.03222 + 1.312*I
+    \end{verbatim}
+
+    \begin{verbatim}
+x2 = 0.4355
+    \end{verbatim}
+    
+ \section{Задание №5. Алгебраические уравнения 4-й степени}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{poly\PYZus{}x} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{4} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{l+m+mi}{3}\PY{o}{*}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+}\PY{l+m+mi}{7}\PY{o}{*}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{l+m+mi}{11}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{)}
+\end{Verbatim}
+
+$-5*x^4 + 2*x^3 - 3*x^2 + 7*x - 11$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{poly\PYZus{}x} \PY{o}{/}\PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{)}
+\end{Verbatim}
+
+    
+    $x^4 - 2/5*x^3 + 3/5*x^2 - 7/5*x + 11/5$
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+c1}{\PYZsh{} замена x = y \PYZhy{} a/4, где a \PYZhy{} коэф. при x**3}
+        \PY{n}{a} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+a =  -2/5
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{poly\PYZus{}y} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{p}{(}\PY{n}{x} \PY{o}{=} \PY{n}{y} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{a}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{expand}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{simplify\PYZus{}full}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y}\PY{p}{)}
+\end{Verbatim}
+
+    
+    $y^4 + 27/50*y^2 - 161/125*y + 20657/10000$
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{poly\PYZus{}y} \PY{o}{/}\PY{o}{=} \PY{n}{poly\PYZus{}y}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y}\PY{p}{)}
+\end{Verbatim}
+
+$y^4 + 27/50*y^2 - 161/125*y + 20657/10000$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{pqr} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{p}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{poly\PYZus{}y}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+               \PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{q}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{poly\PYZus{}y}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+               \PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{poly\PYZus{}y}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{y}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{\PYZcb{}}
+        \PY{n}{show}\PY{p}{(}\PY{n}{pqr}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+{p: 27/50, q: -161/125, r: 20657/10000}
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{s p q r}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{poly\PYZus{}s} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{n}{p}\PY{o}{*}\PY{n}{s}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{r}\PY{o}{*}\PY{n}{s} \PY{o}{+} \PY{n}{r}\PY{o}{*}\PY{n}{p} \PY{o}{\PYZhy{}} \PY{n}{q}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{/}\PY{l+m+mi}{4}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}s}\PY{p}{)}
+\end{Verbatim}
+
+$-p*s^2 + 2*s^3 - 1/4*q^2 + p*r - 2*r*s$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{poly\PYZus{}s\PYZus{}n} \PY{o}{=} \PY{n}{poly\PYZus{}s}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pqr}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}s\PYZus{}n}\PY{p}{)}
+\end{Verbatim}
+
+$2*s^3 - 27/50*s^2 - 20657/5000*s + 350371/500000$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{sols} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{poly\PYZus{}s\PYZus{}n}\PY{p}{,} \PY{n}{s}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{k}{for} \PY{n}{sol} \PY{o+ow}{in} \PY{n}{sols}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{rhs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+0.168
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+-1.39
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+1.49
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{c+c1}{\PYZsh{} Выбираем любой s, не равный нулю}
+         \PY{n}{s\PYZus{}0} \PY{o}{=} \PY{n}{sols}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{rhs}\PY{p}{(}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{s\PYZus{}0}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+1.49
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{y s p q}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{poly\PYZus{}y\PYZus{}1} \PY{o}{=} \PY{n}{y}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{y}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s} \PY{o}{\PYZhy{}} \PY{n}{p}\PY{p}{)} \PY{o}{+} \PY{n}{q}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s} \PY{o}{\PYZhy{}} \PY{n}{p}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{s}
+         \PY{n}{poly\PYZus{}y\PYZus{}2} \PY{o}{=} \PY{n}{y}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{y}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s} \PY{o}{\PYZhy{}} \PY{n}{p}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{q}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s} \PY{o}{\PYZhy{}} \PY{n}{p}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{n}{s}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}1}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}2}\PY{p}{)}
+\end{Verbatim}
+
+    
+    $y^2 - \sqrt(-p + 2*s)*y + s + \frac{1}{2}*\frac{q}{\sqrt(-p + 2*s)}$
+    
+    $y^2 + \sqrt(-p + 2*s)*y + s - \frac{1}{2}*\frac{q}{\sqrt(-p + 2*s)}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{show}\PY{p}{(}\PY{n}{s\PYZus{}0}\PY{p}{)}
+\end{Verbatim}
+
+$(\frac{1}{18000}*I*\sqrt(35799953)*\sqrt(3) - \frac{163}{2000})^{(1/3)} + \frac{209}{300}/(\frac{1}{18000}*I*\sqrt(35799953)*\sqrt(3) - \frac{163}{2000})^{(1/3)} + \frac{9}{100}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{poly\PYZus{}y\PYZus{}1\PYZus{}n} \PY{o}{=} \PY{n}{poly\PYZus{}y\PYZus{}1}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pqr}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{n}{s\PYZus{}0}\PY{p}{)}
+         \PY{n}{poly\PYZus{}y\PYZus{}2\PYZus{}n} \PY{o}{=} \PY{n}{poly\PYZus{}y\PYZus{}2}\PY{p}{(}\PY{o}{*}\PY{o}{*}\PY{n}{pqr}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{n}{s\PYZus{}0}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}1\PYZus{}n}\PY{o}{.}\PY{n}{simplify\PYZus{}full}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}2\PYZus{}n}\PY{p}{)}
+\end{Verbatim}
+
+$1/145800*18^(1/3)*\sqrt(6)*3^(11/12)*(2700*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3)*y^2*\sqrt(-18^(1/3)*(9*18^(2/3)*3^(5/6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3) - 5*18^(1/3)*3^(5/6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(2/3) - 6270*3^(5/6))/(I*\sqrt(35799953) - 489*\sqrt(3))^(1/3)) - 90*(5*18^(2/3)*\sqrt(6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(2/3) + 6270*18^(1/3)*\sqrt(6) - 162*\sqrt(6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3))*y + \sqrt(3)*(5*18^(2/3)*\sqrt(3)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(2/3) + 6270*18^(1/3)*\sqrt(3) + 81*\sqrt(3)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3))*\sqrt(-18^(1/3)*(9*18^(2/3)*3^(5/6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3) - 5*18^(1/3)*3^(5/6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(2/3) - 6270*3^(5/6))/(I*\sqrt(35799953) - 489*\sqrt(3))^(1/3)) - 26082*\sqrt(6)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3))/(\sqrt(-(9*18^(2/3)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(1/3) - 5*18^(1/3)*(I*\sqrt(35799953)*\sqrt(3) - 1467)^(2/3) - 6270)/(I*\sqrt(35799953) - 489*\sqrt(3))^(1/3))*(I*\sqrt(35799953) - 489*\sqrt(3))^(1/3))$
+
+$y^2 + 1/5*\sqrt(1/6)*y*\sqrt(300*(1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) + 209/(1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) - 54) + (1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) + 483/25*\sqrt(1/6)/\sqrt(300*(1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) + 209/(1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) - 54) + 209/300/(1/18000*I*\sqrt(35799953)*\sqrt(3) - 163/2000)^(1/3) + 9/100$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{sols} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}1\PYZus{}n}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{sols}\PY{o}{.}\PY{n}{extend}\PY{p}{(}\PY{n}{solve}\PY{p}{(}\PY{n}{poly\PYZus{}y\PYZus{}2\PYZus{}n}\PY{p}{,} \PY{n}{y}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{show}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{)}
+\end{Verbatim}
+
+$x^4 - 2/5*x^3 + 3/5*x^2 - 7/5*x + 11/5$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{a} \PY{o}{=} \PY{n}{poly\PYZus{}x}\PY{o}{.}\PY{n}{coefficient}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{a = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{a}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{sol} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{sols}\PY{p}{)}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{p}{(}\PY{n}{sol}\PY{o}{.}\PY{n}{rhs}\PY{p}{(}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{a}\PY{o}{/}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+a = -2/5
+    \end{verbatim}
+
+
+    \begin{verbatim}
+x_0 =  0.88262 + 0.68634*I
+    \end{verbatim}
+
+
+    \begin{verbatim}
+x_1 = 0.88262 - 0.68634*I
+    \end{verbatim}
+
+
+    \begin{verbatim}
+x_2 = -0.68262 + 1.1375*I
+    \end{verbatim}
+
+
+    \begin{verbatim}
+x_3 = -0.68262 - 1.1375*I
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{n}{sols} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+         \PY{k}{for} \PY{n}{i}\PY{p}{,} \PY{n}{sol} \PY{o+ow}{in} \PY{n+nb}{enumerate}\PY{p}{(}\PY{n}{sols}\PY{p}{)}\PY{p}{:}
+             \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}}\PY{l+s+si}{\PYZob{}i\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{sol}\PY{o}{.}\PY{n}{rhs}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{n}{digits}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+x_0 = -0.68262 - 1.1375*I
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+x_1 = -0.68262 + 1.1375*I
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+x_2 = 0.88262 - 0.68633*I
+    \end{verbatim}
+
+    
+    
+    \begin{verbatim}
+x_3 = 0.88262 + 0.68633*I
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{n}{rgbcolor}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}21}]:}
+
+\begin{sagesilent}
+g = -5*x^4 + 2*x^3 - 3*x^2 + 7*x - 11
+plot(g, -2, 2)
+\end{sagesilent}
+\sageplot{plot(g, -2, 2)}\eqn(3)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{n}{complex\PYZus{}plot}\PY{p}{(}\PY{n}{poly\PYZus{}x}\PY{p}{,} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}22}]:}
+
+\begin{sagesilent}
+g = -5*x^4 + 2*x^3 - 3*x^2 + 7*x - 11
+complex_plot(g, (-3, 3), (-3, 3))
+\end{sagesilent}
+\sageplot{complex_plot(g, (-3, 3), (-3, 3))}\eqn(3)
+    
+    \section{Задание №6. НОД двух полиномов}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{R}\PY{p}{,} \PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)} \PY{o}{=} \PY{n}{PolynomialRing}\PY{p}{(}\PY{n}{QQ}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x, y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{objgens}\PY{p}{(}\PY{p}{)}
+        \PY{n}{R}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}1}]:} Multivariate Polynomial Ring in x, y over Rational Field
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{f} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{4} \PY{o}{+} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{3} \PY{o}{+} \PY{l+m+mi}{2} \PY{o}{*} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{x} \PY{o}{+} \PY{l+m+mi}{1}
+        \PY{n}{g} \PY{o}{=} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{3} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{+} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{f = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{g = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{g}\PY{p}{)}
+\end{Verbatim}
+
+$f(x) = x^4 + x^3 + 2x^2 + x + 1$
+
+$g(x) = x^3 - 2x^2 + x - 2$
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{MyGcd}\PY{p}{(}\PY{n}{p1}\PY{p}{,} \PY{n}{p2}\PY{p}{)}\PY{p}{:}
+            \PY{k}{while} \PY{n}{p1} \PY{o}{!=} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{p2} \PY{o}{!=} \PY{l+m+mi}{0}\PY{p}{:}
+                \PY{k}{if} \PY{n}{p1} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{p2}\PY{p}{:}
+                    \PY{n}{p1} \PY{o}{\PYZpc{}}\PY{o}{=} \PY{n}{p2}
+                \PY{k}{else}\PY{p}{:}
+                    \PY{n}{p2} \PY{o}{\PYZpc{}}\PY{o}{=} \PY{n}{p1}
+            \PY{k}{return} \PY{n}{p1} \PY{o+ow}{or} \PY{n}{p2}
+\end{Verbatim}
+
+Применим к ним алгоритм Евклида
+для нахождения их наименьшего общего делителя (НОД):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{my\PYZus{}gcd} \PY{o}{=} \PY{n}{MyGcd}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{g}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{7}
+        \PY{n}{res} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{gcd}\PY{p}{(}\PY{n}{g}\PY{p}{)}
+        
+        \PY{k}{if} \PY{n}{my\PYZus{}gcd} \PY{o}{==} \PY{n}{res}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{НОД= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{my\PYZus{}gcd}\PY{p}{)}
+        \PY{k}{else}\PY{p}{:}
+            \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{НОД вычислен неверно!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+
+НОД=$x^2 + 1$
+
+
+    \section{Задание №7. Линейное преобразование и характеристическое уравнение}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{N} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{A} \PY{o}{=} \PY{n}{N}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{S} \PY{o}{=} \PY{n}{N}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{A}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Новый базис: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{S}\PY{p}{)}
+\end{Verbatim}
+
+Дано преобразование и базис:
+
+$A = \begin{vmatrix}1&1&0\\2&1&-2\\1&3&1\end{vmatrix}$
+
+$\begin{cases}e_1` = 2e_1 + 4e_2+ e_3\\e_2` = 2e_1 + e_2\\e_3` = e_1 + e_3\end{cases}$,
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{B} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZti{}}\PY{n}{S}\PY{p}{)} \PY{o}{*} \PY{n}{A} \PY{o}{*} \PY{n}{S}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{B = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+\end{Verbatim}
+Матрица $A$ в новом базисе:
+    
+    $B = \begin{vmatrix}3&\frac{38}{7}&\frac{1}{7}\\-2&-\frac{13}{7}&-\frac{2}{7}\\6&\frac{11}{7}&\frac{13}{7}\end{vmatrix}$.
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{E} \PY{o}{=} \PY{n}{N}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{q} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{det}\PY{p}{(}\PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{x}\PY{o}{*}\PY{n}{E}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{x}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{q}\PY{p}{)}
+\end{Verbatim}
+
+$[x == -1/2*(1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)}*(I*\sqrt(3) + 1) - 2/3*(I*\sqrt(3) - 1)/(1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)} + 1, x == -1/2*(1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)}*(-I*\sqrt(3) + 1) + 2/3*(I*\sqrt(3) + 1)/(1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)} + 1, x == (1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)} - 4/3/(1/9*\sqrt(91)*\sqrt(3) - 1)^{(1/3)} + 1]$
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Собственнные значения B:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{B}\PY{o}{.}\PY{n}{eigenvalues}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Собственные векторы B:}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{B}\PY{o}{.}\PY{n}{eigenvectors\PYZus{}right}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+Собственнные значения B:$\begin{cases}\lambda_1 = 0,527\\
+\lambda_2 = 1,237-2,042*i\\\lambda_3 = 1,237+2,042*i\end{cases}$
+
+
+ Собственные векторы B:
+ $[(0.5265341922708738?,[(1,-0.3477835023267799?,4.098487565686247?)], 1), (1.236732903864563? - 2.041599226909250?*I,
+[(1, -0.3132877360160973? - 0.4435749036487627?*I,
+-0.4379357043363634? + 2.564651750288235?*I)], 1), (1.236732903864563? + 2.041599226909250?*I,
+[(1, -0.3132877360160973? + 0.4435749036487627?*I,
+-0.4379357043363634? - 2.564651750288235?*I)],1)]$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Характеристичекий полином A: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{A}\PY{o}{.}\PY{n}{charpoly}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Характеристичекий полином B: }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,}\PY{n}{B}\PY{o}{.}\PY{n}{charpoly}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+Характеристичекий полином A: $-\lambda^3 + 3\lambda^2 -
+7\lambda + 3 = 0$
+Характеристичекий полином B: $-\lambda^3 + 3\lambda^2 -
+7\lambda + 3 = 0$
+
+    \section{Задание №8. Упрощение ур-й фигур 2го порядка на плоскости}
+    
+Имеем уравнение: $-2y^2 - 3z^2 + 4yz + 4y + 4z - 12 = 0$. Составим по нему матрицы $P = \begin{pmatrix}
+-2&2&2\\2&-3&2\\2&2&-12\end{pmatrix}$ и $A = \begin{pmatrix}-2&2\\2&-3\end{pmatrix}$.  Составим характеристическое уравнение $\lambda^2-\tau\cdot \lambda+ \delta=0$. Вычислим его коэффициенты по формулам: $\tau=a_{11}+a_{22}$, $\delta=\begin{vmatrix}a_{11}&a_{12}\\a_{12}&a_{22}\end{vmatrix}$. Найдём корни $\lambda_1,\,\lambda_2$ (с учетом кратности) характеристического уравнения. Вычислим инвариант $\Delta=\det{P}= \begin{vmatrix} a_{11}&a_{12}&a_1\\ a_{12}&a_{22}&a_2\\ a_1&a_2&a_0\end{vmatrix}$. По найденным характеристикам можно определить, что это эллипс.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{N} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}
+        \PY{n}{T} \PY{o}{=} \PY{n}{MatrixSpace}\PY{p}{(}\PY{n}{QQ}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{a11} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}
+        \PY{n}{a12} \PY{o}{=} \PY{l+m+mi}{2}
+        \PY{n}{a22} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{3}
+        \PY{n}{a1} \PY{o}{=} \PY{l+m+mi}{2}
+        \PY{n}{a2} \PY{o}{=} \PY{l+m+mi}{2}
+        \PY{n}{a0} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{12}
+        \PY{n}{P} \PY{o}{=} \PY{n}{N}\PY{p}{(}\PY{p}{[}\PY{n}{a11}\PY{p}{,} \PY{n}{a12}\PY{p}{,} \PY{n}{a1}\PY{p}{,} \PY{n}{a12}\PY{p}{,} \PY{n}{a22}\PY{p}{,} \PY{n}{a2}\PY{p}{,} \PY{n}{a1}\PY{p}{,} \PY{n}{a2}\PY{p}{,} \PY{n}{a0}\PY{p}{]}\PY{p}{)}
+        \PY{n}{A} \PY{o}{=} \PY{n}{T}\PY{p}{(}\PY{p}{[}\PY{n}{a11}\PY{p}{,} \PY{n}{a12}\PY{p}{,}  \PY{n}{a12}\PY{p}{,} \PY{n}{a22}\PY{p}{]}\PY{p}{)}
+        \PY{n}{E} \PY{o}{=} \PY{n}{T}\PY{p}{(}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+        \PY{n}{gamma} \PY{o}{=} \PY{n}{a11} \PY{o}{+} \PY{n}{a22}
+        \PY{n}{delta} \PY{o}{=} \PY{n}{det}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+        \PY{n}{Delta} \PY{o}{=} \PY{n}{det}\PY{p}{(}\PY{n}{P}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{gamma}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{delta}\PY{p}{,}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{,}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{Delta}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{P}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{verbatim}
+-5 , 2 , 12
+    \end{verbatim}
+
+$\begin{pmatrix}
+-2&2&2\\2&-3&2\\2&2&-12\end{pmatrix}$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lyamda}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{r} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{n}{det}\PY{p}{(}\PY{n}{A} \PY{o}{\PYZhy{}} \PY{n}{lyamda} \PY{o}{*} \PY{n}{E}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{lyamda}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{r}\PY{p}{)}
+\end{Verbatim}
+
+$\lyambda == -1/2*\sqrt(17) - 5/2, \lyambda == 1/2*\sqrt(17) - 5/2]$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{lyamda1} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{lyamda2} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{l} \PY{o}{=} \PY{n}{lyamda1} \PY{o}{*} \PY{n}{lyamda2}
+        \PY{n}{show}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+\end{Verbatim}
+
+$-1/4*(\sqrt(17) + 5)*(\sqrt(17) - 5)$
+
+    
+    l \textgreater{} 0, delta \textgreater{} 0, Delta != 0, gamma * Delta
+\textless{} 0 следовательно это эллипс
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x1, y1}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{r} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{a11} \PY{o}{\PYZhy{}} \PY{n}{lyamda1}\PY{p}{)} \PY{o}{*} \PY{n}{x1} \PY{o}{+} \PY{n}{a12} \PY{o}{*} \PY{n}{y1} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a12} \PY{o}{*} \PY{n}{x1} \PY{o}{+} \PY{p}{(}\PY{n}{a22} \PY{o}{\PYZhy{}} \PY{n}{lyamda1}\PY{p}{)} \PY{o}{*} \PY{n}{y1} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{x1}\PY{p}{,} \PY{n}{y1}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{r}\PY{p}{)}
+\end{Verbatim}
+
+$[[x1 == r1, y1 == -1/4*\sqrt(17)*r1 - 1/4*r1]]$
+
+    
+    Kоординаты x0, y0 начала O\_ канонической системы координат
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x, y}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{r} \PY{o}{=} \PY{n}{solve}\PY{p}{(}\PY{p}{[}\PY{n}{a11} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{a12} \PY{o}{*} \PY{n}{y} \PY{o}{+} \PY{n}{a1} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a12} \PY{o}{*} \PY{n}{x} \PY{o}{+} \PY{n}{a22} \PY{o}{*} \PY{n}{y} \PY{o}{+} \PY{n}{a2} \PY{o}{==} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{r}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+[[x == 5, y == 4]]
+    \end{verbatim}
+
+    
+    Kоэффициенты канонического уравнения(A = a\^{}2, B = b\^{}2)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{A, B}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{A} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{Delta} \PY{o}{/} \PY{p}{(}\PY{n}{lyamda1} \PY{o}{*} \PY{n}{delta}\PY{p}{)}
+        \PY{n}{B} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{Delta} \PY{o}{/} \PY{p}{(}\PY{n}{lyamda2} \PY{o}{*} \PY{n}{delta}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{A= }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{A}\PY{p}{,} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ B=}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{B}\PY{p}{)}
+\end{Verbatim}
+
+$A=  12/(\sqrt(17) + 5)$
+$B= -12/(\sqrt(17) - 5)$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{n}{x} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{12} \PY{o}{/} \PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{y} \PY{o}{\PYZhy{}} \PY{l+m+mi}{4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{/} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{12} \PY{o}{/} \PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{1 = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{f}\PY{p}{)}
+\end{Verbatim}
+
+$1 = \frac{1}{12}*(x - 5)^2*(\sqrt(17) + 5) - \frac{1}{12}*(y - 4)^2*(\sqrt(17) - 5)$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{Z} \PY{o}{=} \PY{n}{var}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X, Y, Z}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{F}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{Z}\PY{p}{)} \PY{o}{=} \PY{p}{(}\PY{n}{X} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{/} \PY{p}{(}\PY{l+m+mi}{12} \PY{o}{/} \PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{+} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)} \PY{o}{+} \PY{p}{(}\PY{n}{Z} \PY{o}{\PYZhy{}} \PY{l+m+mi}{4}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{/} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{12} \PY{o}{/} \PY{p}{(}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{17}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)} \PY{o}{==} \PY{l+m+mi}{1}
+        \PY{n}{implicit\PYZus{}plot3d}\PY{p}{(}\PY{n}{F}\PY{p}{,} \PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{Y}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{,} \PY{p}{(}\PY{n}{Z}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{l+m+mi}{15}\PY{p}{,} \PY{l+m+mi}{15}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}8}]:} Graphics3d Object
+\end{Verbatim}
+
+\begin{sagesilent}
+X, Y, Z = var('X, Y, Z')
+F(X, Y, Z) = (X - 5)^2 / (12 / (sqrt(17) + 5)) + (Z - 4)^2 / (-12 / (sqrt(17) - 5)) == 1
+implicit_plot3d(F, (X, -15, 15), (Y, -15, 15), (Z, -15, 15))
+\end{sagesilent}
+\sageplot{implicit_plot3d(F, (X, -15, 15), (Y, -15, 15), (Z, -15, 15))}
+
+
+\section{Задание №9. Численные методы --- Интегралы}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{8} \PY{o}{*} \PY{n}{x} \PY{o}{\PYZhy{}} \PY{n}{arctan}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{+} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{x}\PY{o}{\PYZca{}}\PY{l+m+mi}{2}\PY{p}{)}
+        \PY{n}{a}\PY{o}{=}\PY{l+m+mi}{0}
+        \PY{n}{b}\PY{o}{=}\PY{n}{pi}\PY{o}{/}\PY{l+m+mi}{4}
+        \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+\end{Verbatim}
+
+$8*x - arctan(2*x))/(4*x^2 + 1)$
+
+    
+    Построим её график на отрезке \((0, \frac{\pi}{4})\) и закрасим площадь
+под ней.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{xmin}\PY{o}{=}\PY{n}{a}\PY{p}{,} \PY{n}{xmax} \PY{o}{=} \PY{n}{b}\PY{p}{,} \PY{n}{fill}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{fillcolor}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{gold}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+
+\begin{sagesilent}
+f = (8 * x - arctan(2 * x))/(1 + 4 * x^2)
+a=0
+b=pi/4
+plot(f, xmin=a, xmax = b, fill=True, fillcolor="gold")
+\end{sagesilent}
+\sageplot{plot(f, xmin=a, xmax = b, fill=True, fillcolor="gold")}
+
+
+    Посчитаем значение интеграла.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{integral\PYZus{}result} \PY{o}{=} \PY{n}{numerical\PYZus{}integral}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+        \PY{n}{show}\PY{p}{(}\PY{n}{integral\PYZus{}result}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+0.9914591670015737
+    \end{verbatim}
+
+    
+   Воспользуемся методом трапеций.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{trapeze\PYZus{}result} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{n}{max\PYZus{}steps} \PY{o}{=} \PY{l+m+mi}{10}
+        
+        \PY{k}{def} \PY{n+nf}{trapeze}\PY{p}{(}\PY{n}{step}\PY{p}{)}\PY{p}{:}
+            \PY{k}{global} \PY{n}{value}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{f}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{p}{,} \PY{n}{trapeze\PYZus{}result}
+            \PY{n}{trapeze\PYZus{}result} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{length} \PY{o}{=} \PY{p}{(}\PY{n}{b}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{p}{)}\PY{o}{/}\PY{n}{max\PYZus{}steps}
+            \PY{n}{pl} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{xmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{xmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ymin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ymax}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{step}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{n}{l} \PY{o}{=} \PY{n}{a} \PY{o}{+} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{length}
+                \PY{n}{r} \PY{o}{=} \PY{n}{a} \PY{o}{+} \PY{n}{i}\PY{o}{*}\PY{n}{length}
+                \PY{n}{trapeze\PYZus{}result} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{r}\PY{p}{)}\PY{o}{+}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{l}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{length}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
+                \PY{n}{pl} \PY{o}{+}\PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{polygon2d}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{l}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{r}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{l}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{l}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fill}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{rgbcolor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{pl}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{i=}\PY{l+s+si}{\PYZob{}step\PYZcb{}}\PY{l+s+s1}{. trapeze\PYZus{}result = }\PY{l+s+si}{\PYZob{}trapeze\PYZus{}result\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n+nd}{@interact}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{k}{def} \PY{n+nf}{\PYZus{}}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+            \PY{n}{trapeze}\PY{p}{(}\PY{n}{step}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Interactive function <function _ at 0x6fee9bbed08> with 1 widget
+  step: IntSlider(value=10, description='step…
+    \end{verbatim}
+
+    
+    Воспользуемся методом прямоугольников.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{rectangle\PYZus{}result} \PY{o}{=} \PY{l+m+mi}{0}
+        \PY{k}{def} \PY{n+nf}{rectangle}\PY{p}{(}\PY{n}{step}\PY{p}{)}\PY{p}{:}
+            \PY{k}{global} \PY{n}{value}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{f}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{p}{,} \PY{n}{rectangle\PYZus{}result}
+            \PY{n}{rectangle\PYZus{}result} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{n}{length} \PY{o}{=} \PY{p}{(}\PY{n}{b}\PY{o}{\PYZhy{}}\PY{n}{a}\PY{p}{)}\PY{o}{/}\PY{n}{max\PYZus{}steps}
+            \PY{n}{pl} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{xmin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{xmax}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{ymin}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{ymax}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}
+            \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{step}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+                \PY{n}{l} \PY{o}{=} \PY{n}{a} \PY{o}{+} \PY{p}{(}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{length}
+                \PY{n}{r} \PY{o}{=} \PY{n}{a} \PY{o}{+} \PY{n}{i}\PY{o}{*}\PY{n}{length}
+                \PY{n}{h} \PY{o}{=} \PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{r}\PY{p}{)}\PY{o}{+}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{l}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                \PY{n}{rectangle\PYZus{}result} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{length}\PY{o}{*}\PY{n}{h}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
+                \PY{n}{pl} \PY{o}{+}\PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{polygon2d}\PY{p}{(}\PY{p}{[}\PY{p}{(}\PY{n}{l}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{r}\PY{p}{,} \PY{n}{h}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{,}
+                           \PY{p}{(}\PY{n}{l}\PY{p}{,} \PY{n}{h}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{]}\PY{p}{,} \PY{n}{fill}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{rgbcolor}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{255}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{pl}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{i=}\PY{l+s+si}{\PYZob{}step\PYZcb{}}\PY{l+s+s1}{. rectangle\PYZus{}result = }\PY{l+s+si}{\PYZob{}rectangle\PYZus{}result\PYZcb{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n+nd}{@interact}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{k}{def} \PY{n+nf}{\PYZus{}}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{:}
+            \PY{n}{rectangle}\PY{p}{(}\PY{n}{step}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Interactive function <function _ at 0x6fee9b5dc80> with 1 widget
+  step: IntSlider(value=10, description='step…
+    \end{verbatim}
+
+    
+    Сравним значения
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{show}\PY{p}{(}\PY{n}{integral\PYZus{}result} \PY{o}{\PYZhy{}} \PY{n}{trapeze\PYZus{}result}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+0.00340929833201120
+    \end{verbatim}
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{show}\PY{p}{(}\PY{n}{integral\PYZus{}result} \PY{o}{\PYZhy{}} \PY{n}{rectangle\PYZus{}result}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+0.00340929833201120
+    \end{verbatim}
+
+Значения обоих методов сходятся с точность до 4 знака после запятой.
+
+\section{Задание №10. Численные методы - Метод касательных.}
+
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{n}{f} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{2}\PY{o}{\PYZca{}}\PY{n}{sin}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{x}\PY{p}{)} \PY{o}{+} \PY{n}{arctan}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{*} \PY{n}{x}\PY{p}{)}\PY{p}{)}\PY{o}{\PYZca{}}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{l+m+mi}{8} \PY{o}{*} \PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{p}{)}
+\end{Verbatim}
+
+$(2^{\sin(2*x)} + \arctan(2*x))^2 - 8*\sin(x)$
+    
+    Построим график функции.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{xmin}\PY{o}{=}\PY{o}{\PYZhy{}}\PY{l+m+mi}{5}\PY{p}{,} \PY{n}{xmax}\PY{o}{=}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}2}]:}
+    
+\begin{sagesilent}
+f = (2^sin(2*x) + arctan(2 * x))^2 - 8 * sin(x)
+plot(f, xmin=-5, xmax=5)
+\end{sagesilent}
+
+\sageplot{plot(f, xmin=-5, xmax=5)}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{n}{EPS} \PY{o}{=} \PY{l+m+mf}{0.001}
+        \PY{n}{a} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{10}
+        \PY{n}{b} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}
+        \PY{n}{x0} \PY{o}{=} \PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{)} \PY{o}{/}\PY{l+m+mi}{2}
+        \PY{n}{max\PYZus{}steps} \PY{o}{=} \PY{l+m+mi}{10}
+        \PY{k}{def} \PY{n+nf}{newton}\PY{p}{(}\PY{n}{step}\PY{p}{)}\PY{p}{:}
+            \PY{k}{global} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{,} \PY{n}{EPS}\PY{p}{,} \PY{n}{f}
+            \PY{n}{x1} \PY{o}{=} \PY{n}{a}
+            \PY{n}{x2} \PY{o}{=} \PY{p}{(}\PY{n}{a} \PY{o}{+} \PY{n}{b}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+            \PY{n}{df} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{derivative}\PY{p}{(}\PY{p}{)}
+            \PY{n}{counter} \PY{o}{=} \PY{l+m+mi}{0}
+            \PY{k}{while} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x1}\PY{p}{)} \PY{o}{\PYZhy{}} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x2}\PY{p}{)}\PY{p}{)} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{n}{EPS} \PY{o+ow}{and} \PY{n}{counter} \PY{o}{\PYZlt{}} \PY{n}{step}\PY{p}{:}
+                \PY{n}{x1} \PY{o}{=} \PY{n}{x2}
+                \PY{n}{x2} \PY{o}{=} \PY{n}{x1} \PY{o}{\PYZhy{}} \PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x1}\PY{p}{)}\PY{o}{/}\PY{n}{df}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{n}\PY{p}{(}\PY{p}{)}
+                \PY{k}{while} \PY{n}{x2} \PY{o}{\PYZgt{}} \PY{n}{b} \PY{o+ow}{or} \PY{n}{x2} \PY{o}{\PYZlt{}} \PY{n}{a}\PY{p}{:}
+                    \PY{n}{x2} \PY{o}{=} \PY{p}{(}\PY{n}{x1} \PY{o}{+} \PY{n}{x2}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+                \PY{n}{counter} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+            \PY{n}{pl} \PY{o}{=} \PY{n}{plot}\PY{p}{(}\PY{n}{f}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+            \PY{n}{pl} \PY{o}{+}\PY{o}{=} \PY{n}{point}\PY{p}{(}\PY{p}{(}\PY{n}{x1}\PY{p}{,} \PY{n}{f}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{x1}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{red}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{size}\PY{o}{=}\PY{l+m+mi}{30}\PY{p}{,} \PY{n}{zorder}\PY{o}{=}\PY{l+m+mi}{10}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{pl}\PY{p}{)}
+            \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{x\PYZus{}}\PY{l+s+si}{\PYZob{}counter\PYZcb{}}\PY{l+s+s2}{ = }\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{x1}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n+nd}{@interact}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}steps}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+        \PY{k}{def} \PY{n+nf}{\PYZus{}}\PY{p}{(}\PY{n}{step}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{)}\PY{p}{:}
+            \PY{n}{newton}\PY{p}{(}\PY{n}{step}\PY{p}{)}
+\end{Verbatim}
+
+    
+    \begin{verbatim}
+Interactive function <function _ at 0x6fee258b158> with 1 widget
+  step: IntSlider(value=10, description='step…
+    \end{verbatim}
+
+    
+    Корень находится на 5 шаге алгоритма.
+
+    Проверяем на сходимость:
+    
+    Пусть выполняются следующие условия:
+
+1. Функция $f(x)$ определена и дважды дифференцируема на $[a,b]$.
+
+2. Отрезку $[a,b]$ принадлежит только один простой корень $x_{\ast}$, так что $f(a)\cdot f(b)&\lt;0$.
+
+3. Производные $f'(x)$, $f''(x)$ на $[a,b]$ сохраняют знак, и $f'(x)\ne0$.
+
+4. Начальное приближение $x^{(0)}$ удовлетворяет неравенству $f(x^{(0)})\cdot f''(x^{(0)})&\gt$;0 (знаки функций $f(x)$ и $f''(x)$ в точке $x^{(0)}$ совпадают).
+
+Тогда с помощью метода Ньютона можно вычислить корень уравнения $f(x)=0$ с любой точностью.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{Fd} \PY{o}{=} \PY{n}{f}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{Fd}\PY{p}{)}
+\end{Verbatim}
+
+$4*(2^{\sin(2*x)}*\cos(2*x)*\log(2) + 1/(4*x^2 + 1))*(2^{\sin(2*x)} + \arctan(2*x)) - 8*\cos(x)$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{Fdd} \PY{o}{=} \PY{n}{Fd}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{p}{)}
+        \PY{n}{show}\PY{p}{(}\PY{n}{Fdd}\PY{p}{)}
+\end{Verbatim}
+
+$8*(2^{\sin(2*x)}*\cos(2*x)*\log(2) + 1/(4*x^2 + 1))^2 + 8*(2^{\sin(2*x)}*\cos(2*x)^2*\log(2)^2 - 2^{\sin(2*x)}*\log(2)*\sin(2*x) - 4*x/(4*x^2 + 1)^2)*(2^{\sin(2*x)} + \arctan(2*x)) + 8*\sin(x)$
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{show}\PY{p}{(}\PY{n}{f}\PY{p}{(}\PY{n}{a}\PY{p}{)} \PY{o}{*} \PY{n}{f}\PY{p}{(}\PY{n}{b}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    
+$((1/2^{\sin(20)} - \arctan(20))^2 + 8*\sin(10))*((1/2^{\sin(4)} - \arctan(4))^2 + 8*\sin(2))$
+
+    
+    Выражение не считатеся. Проверим пересекают ли производные 0 на отрезке
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{Fd}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}8}]:}
+    
+\begin{sagesilent}
+f = (2^sin(2*x) + arctan(2 * x))^2 - 8 * sin(x)
+a = -10
+b = -2
+Fd = f.diff()
+plot(Fd, a, b)
+\end{sagesilent}
+
+\sageplot{plot(Fd, a, b)}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{plot}\PY{p}{(}\PY{n}{Fdd}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}
+\end{Verbatim}
+\texttt{\color{outcolor}Out[{\color{outcolor}9}]:}
+\begin{sagesilent}
+f = (2^sin(2*x) + arctan(2 * x))^2 - 8 * sin(x)
+a = -10
+b = -2
+Fd = f.diff()
+Fdd = Fd.diff()
+plot(Fdd, a, b)
+\end{sagesilent}
+
+\sageplot{plot(Fdd, a, b)}
+
+    Данный пункт не сходится. Проверим следующий
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{f}\PY{p}{(}\PY{n}{x0}\PY{p}{)}\PY{o}{*}\PY{n}{Fdd}\PY{p}{(}\PY{n}{x0}\PY{p}{)}
+\end{Verbatim}
+
+$8/21025*((145*\cos(12)*\log(2)/2^{\sin(12)} + 1)^2 + (21025*\cos(12)^2*\log(2)^2/2^{\sin(12)} + 21025*\log(2)*\sin(12)/2^{\sin(12)} + 24)*(1/2^{\sin(12)} - \arctan(12)) - 21025*\sin(6))*((1/2^{\sin(12)} - \arctan(12))^2 + 8*\sin(6))$
+            
+    Таким образом данный метод не гарантирует сходимость на данном отрезке.
+    
+    \newpage
+\section{Список литературы}
+\begin{enumerate}
+\item{Справочник по математике, Корн Г., Корн Т., 1973}
+\item{sage.org}
+\item{А.С.Бортаковский, Е.А.Пегачкова, "Типовые задачи по линейной алгебре. Чпсть 2." 2017 г.}
+\end{enumerate}
+
+    \end{document}

@@ -1,0 +1,10 @@
+C:\Users\Anna\source\repos\MNK\MNK\bin\Release\MNK.exe.config
+C:\Users\Anna\source\repos\MNK\MNK\bin\Release\MNK.exe
+C:\Users\Anna\source\repos\MNK\MNK\bin\Release\MNK.pdb
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.csprojAssemblyReference.cache
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.Form1.resources
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.Properties.Resources.resources
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.csproj.GenerateResource.cache
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.csproj.CoreCompileInputs.cache
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.exe
+C:\Users\Anna\source\repos\MNK\MNK\obj\Release\MNK.pdb

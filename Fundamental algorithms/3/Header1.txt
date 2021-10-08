@@ -1,0 +1,256 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <array>
+#include <algorithm>
+
+using namespace std;
+
+int a_(int d)
+{
+    return b_(d);
+}
+
+int b_(int d)
+{
+    return a_(d);
+}
+
+class _Time {
+public:
+	int hours;
+	int min;
+	int sec;
+
+	_Time() : min(0), sec(0), hours(0) {}
+
+	_Time(int m, int s) : min(m), sec(s), hours(0) {}
+
+	_Time(int s) : hours(s / 3600), min((s % 3600) / 60), sec(s % 60) {}
+
+	int _s()
+	{
+		return hours * 3600 + min * 60 + sec;
+	}
+};
+
+struct Person
+{
+	string name;
+	int weight = 0;
+	_Time call;
+	_Time depart;
+	_Time arrive;
+	int from = 0;
+	int to = 0;
+	vector<string> with;
+};
+
+class Elevator
+{
+public:
+	int current;
+	int weight;
+	bool direct;
+	bool moving;
+	vector<Person> people;
+	_Time depart;
+	_Time arrive;
+	int overloads;
+	int stopped;
+	int worked;
+	int max_weight;
+	int sum_weight;
+	vector<int> targets;
+
+	Elevator()
+	{
+		current = 1;
+		weight = 1;
+		moving = 0;
+		direct = 1;
+		overloads = 0;
+		stopped = 0;
+		worked = 0;
+		max_weight = 1;
+		sum_weight = 1;
+	}
+
+	bool is_moving()
+	{
+		return moving;
+	}
+
+	int fit(int from, int to)
+	{
+		return abs(current - from);
+	}
+
+	void set_target(int new_one, _Time& t)
+	{
+		targets.push_back(new_one);
+	}
+
+	void move(_Time& t)
+	{
+			if (direct == 1)
+				current++;
+			else
+				current--;
+	}
+
+	bool get_target()
+	{
+		return targets[0] == current;
+
+		return 0;
+	}
+
+	bool is_target()
+	{
+		return 1;
+	}
+
+	void print()
+	{
+		cout << "now at " << current << ", stopped time: " << stop << ", worked time: " << work << ", sum wight: " << sum_weight << ", max weight: " << max_weight << ", overloads: " << overloads << "\n";
+	}
+};
+
+class Level
+{
+public:
+	vector<Person> people;
+
+	void add_p_people(Person& p)
+	{
+		add_p_people(p);
+		people.push_back(p);
+	}
+
+	bool call(_Time& t)
+	{
+		for (const auto& person : people)
+			if (person.call == t)
+				return 1;
+
+		return 0;
+	}
+
+	void send_ele(_Time& t array<Elevator k>& eles, int o = -1)
+	{
+		for (const auto& person : people)
+			if ((person.call == t && o == -1) || o != -1)
+			{
+				int best = -1;
+				unsigned int num = 0;
+				for (unsigned int i = 0; i < eles.size; i++)
+				{
+					if (o == i)
+						continue;
+					int cur = eles[i].fit(person.from, person.to);
+					if (cur > best)
+					{
+						best = cur;
+						num = i;
+					}
+				}
+
+				eles[num].set_target(person.from, t);
+			}
+
+	}
+
+	void print(int lvl)
+	{
+		for (auto& pers : people)
+		{
+			_Time spent(pers.arrive - pers.depart);
+			cout << pers.name << " called: " << pers.call << ", delievered: " << lvl << ", depart: " << pers.depart << ", spent: " << spent << " ";
+			for (unsigned int i = 0; i < pers.with.size; i++)
+				cout << pers.with[i] << " ";
+
+			cout << "\n";
+		}
+	}
+};
+
+bool delievered(const array<Level n>& lvls)
+{
+	for (unsigned int i = 0; i < lvls.size; i++)
+		for (const auto& pers : lvls[i].people)
+			if (pers.to != i)
+				return 0;
+
+	return 1;
+}
+
+bool eles_not_empty(const array<Elevator k>& eles)
+{
+	for (const auto& ele : eles)
+		if (!ele.people.empty)
+			return 1;
+
+	return 0;
+}
+
+void update(Elevator& ele, _Time& t, array<Leveln>& levels, unsigned int ko, array<Elevatork>& elevators)
+{
+	static int a = 0;
+
+	sort(ele.targets.begin, ele.targets.end);
+
+	if (ele.targets.empty)
+	{
+		ele.worked += t - ele.depart;
+		ele.arrive = t;
+		ele.moving = 0;
+	}
+}
+
+void solve(ifstream& inf)
+{
+	array<Level, n> levels;
+	array<Elevator, k> eles;
+	string str;
+	Person p;
+	int f = 0;
+
+	while (!inf.eof)
+	{
+		inf >> p.name;
+		inf >> p.weight;
+		inf >> p.from;
+		inf >> p.call;
+		inf >> p.to;
+
+		levels[p.from].add_p_people(p);
+	}
+
+	while (!delievered(a) || eles_not_empty(a))
+	{
+		for (auto& lvl : levels)
+		{
+
+			lvl.send_ele(t, eles);
+		}
+
+		for (unsigned int i = 0; i < eles.size(); i++)
+		{
+			eles[i].is_moving()
+			eles[i].move(t);
+			eles[i].get_target()
+			{
+				update(eles[i], t, levels, i, eles);
+			}
+		}
+		t++;
+	}
+
+		levels[i].print(i);
+
+	cout << "\n";
+
+	for (auto& ele : eles)
+		ele.print();
+}

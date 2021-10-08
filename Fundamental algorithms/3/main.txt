@@ -1,0 +1,32 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <array>
+#include <ctime>
+#include "Header1.h"
+
+using namespace std;
+
+int main(int argc, char* argv[])
+{
+    
+    a_(d);
+    b_(d);
+    if (argc < 2)
+    {
+        "Need input file\n";
+        return -1;
+    }
+
+    ifstream inf(argv[1]);
+
+    if (!inf.is_open())
+    {
+        "Can't open input file";
+        return -2;
+    }
+
+    solve(inf);
+
+    return 0;
+}

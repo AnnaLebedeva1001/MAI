@@ -1,0 +1,4 @@
+0 Jon Smeet 60000
+1 Eva Green 70000
+2 Luk Besson 100000
+3 Amelia Riche 65000

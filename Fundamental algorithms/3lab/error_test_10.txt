@@ -1,0 +1,6 @@
+String number 1: (9+3)*5))
+Violation of the order of the brackets
+
+String number 2: (8/2)+(-3*4)
+Two operations in succession
+

@@ -1,0 +1,22 @@
+read(b,2) completed successfully, b = 2
+read(c,2) completed successfully, c = 3
+a:=b+c completed successfully, a = 3
+write(a,2) completed successfully, result of a = 3 in ss = 2: 11
+a:=b&c completed successfully, a = 2
+write(a,2) completed successfully, result of a = 2 in ss = 2: 10
+a:=b->c completed successfully, a = -1
+write(a,2) completed successfully, result of a = -1 in ss = 2: 
+a:=b<-c completed successfully, a = -2
+write(a,2) completed successfully, result of a = -2 in ss = 2: 
+a:=b~c completed successfully, a = 0
+write(a,2) completed successfully, result of a = 0 in ss = 2: 0
+a:=b<>c completed successfully, a = 1
+write(a,2) completed successfully, result of a = 1 in ss = 2: 1
+a:=b+>c completed successfully, a = 0
+write(a,2) completed successfully, result of a = 0 in ss = 2: 0
+a:=b?c completed successfully, a = -3
+write(a,2) completed successfully, result of a = -3 in ss = 2: 
+a:=b!c completed successfully, a = -4
+write(a,2) completed successfully, result of a = -4 in ss = 2: 
+a:=\b completed successfully, a = 0
+write(a,2) completed successfully, result of a = 0 in ss = 2: 0

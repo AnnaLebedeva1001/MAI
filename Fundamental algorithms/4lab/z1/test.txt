@@ -1,0 +1,15 @@
+Load A, /home/anna/projects/3sem/FundAlg/4lab/z1/in.txt;
+Save A, /home/anna/projects/3sem/FundAlg/4lab/z1/in2.txt;
+Load B, /home/anna/projects/3sem/FundAlg/4lab/z1/in3.txt;
+Free(b);
+Rand B, count, 1, 5;
+Concat A, b;
+Remove a, 2, 4;
+Free(b);
+Copy A, 1, 3, b;
+Sort A+(-);
+Permute A;
+Stat a;
+Stat b;
+Print a, 0, 3;
+Print a, all;

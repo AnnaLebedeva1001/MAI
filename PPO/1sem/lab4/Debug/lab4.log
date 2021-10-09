@@ -1,0 +1,9 @@
+﻿  complex.cpp
+  MyForm.cpp
+C:\Users\Anna\source\repos\lab4\lab4\MyForm.cpp(26,28): error C2679: бинарный "+": не найден оператор, принимающий правый операнд типа "void" (или приемлемое преобразование отсутствует)
+C:\Users\Anna\source\repos\lab4\lab4\MyForm.cpp(26,28): message : может быть "встроенный оператор C+++(volatile const System::String ^, volatile const System::String ^)"
+C:\Users\Anna\source\repos\lab4\lab4\MyForm.cpp(26,28): message : или       "встроенный оператор C+++(volatile const System::String ^, volatile const System::Object ^)"
+C:\Users\Anna\source\repos\lab4\lab4\MyForm.cpp(26,28): message : или       "встроенный оператор C+++(volatile const System::Object ^, volatile const System::String ^)"
+C:\Users\Anna\source\repos\lab4\lab4\MyForm.cpp(26,28): message : при попытке сопоставить список аргументов "(System::String ^, void)"
+  Source.cpp
+  Создание кода...

@@ -1,0 +1,4 @@
+﻿  Source.cpp
+C:\Users\Anna\source\repos\lab6z2\lab6z2\Source.cpp(37,31): warning C4018: <: несоответствие типов со знаком и без знака
+  Source.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  lab6z2.vcxproj -> C:\Users\Anna\source\repos\lab6z2\Debug\lab6z2.exe

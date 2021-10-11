@@ -1,0 +1,6 @@
+﻿  Source.cpp
+C:\Users\Anna\source\repos\lab7z1\lab7z1\Source.cpp(119,19): warning C4018: <=: несоответствие типов со знаком и без знака
+  .NETFramework,Version=v4.6.1.AssemblyAttributes.cpp
+  Создание кода...
+  Source.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  lab7z1.vcxproj -> C:\Users\Anna\source\repos\lab7z1\Debug\lab7z1.exe

@@ -1,0 +1,4 @@
+C:\Users\Anna\source\repos\КГ_1_lab\Debug\КГ1lab.MyForm.resources
+C:\Users\Anna\source\repos\КГ_1_lab\Debug\КГ_1_lab.vcxproj.GenerateResource.cache
+C:\Users\Anna\source\repos\КГ_1_lab\Debug\КГ_1_lab.exe
+C:\Users\Anna\source\repos\КГ_1_lab\Debug\КГ_1_lab.vcxproj.AssemblyReference.cache

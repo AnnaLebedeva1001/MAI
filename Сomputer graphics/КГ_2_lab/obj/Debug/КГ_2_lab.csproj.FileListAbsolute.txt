@@ -1,0 +1,10 @@
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.csproj.AssemblyReference.cache
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.Form1.resources
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.Properties.Resources.resources
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.csproj.GenerateResource.cache
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.csproj.CoreCompileInputs.cache
+C:\Users\Anna\source\repos\КГ_2_lab\bin\Debug\КГ_2_lab.exe.config
+C:\Users\Anna\source\repos\КГ_2_lab\bin\Debug\КГ_2_lab.exe
+C:\Users\Anna\source\repos\КГ_2_lab\bin\Debug\КГ_2_lab.pdb
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.exe
+C:\Users\Anna\source\repos\КГ_2_lab\obj\Debug\КГ_2_lab.pdb

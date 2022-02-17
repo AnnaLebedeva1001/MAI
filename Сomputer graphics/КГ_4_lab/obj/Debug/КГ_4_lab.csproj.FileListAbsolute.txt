@@ -1,0 +1,10 @@
+C:\Users\Anna\source\repos\КГ_4_lab\bin\Debug\КГ_4_lab.exe.config
+C:\Users\Anna\source\repos\КГ_4_lab\bin\Debug\КГ_4_lab.exe
+C:\Users\Anna\source\repos\КГ_4_lab\bin\Debug\КГ_4_lab.pdb
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.csproj.AssemblyReference.cache
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.Form1.resources
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.Properties.Resources.resources
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.csproj.GenerateResource.cache
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.csproj.CoreCompileInputs.cache
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.exe
+C:\Users\Anna\source\repos\КГ_4_lab\obj\Debug\КГ_4_lab.pdb

@@ -1,0 +1,5 @@
+﻿  Source.cpp
+C:\Users\Anna\source\repos\КГ_6_lab\Source.cpp(13,15): warning C4244: аргумент: преобразование "int" в "GLfloat", возможна потеря данных
+C:\Users\Anna\source\repos\КГ_6_lab\Source.cpp(72,20): warning C4244: инициализация: преобразование "int" в "GLfloat", возможна потеря данных
+  Source.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
+  КГ_3_lab.vcxproj -> C:\Users\Anna\source\repos\КГ_6_lab\Debug\КГ_3_lab.exe

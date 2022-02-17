@@ -1,0 +1,13 @@
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.exe.config
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.exe
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.pdb
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\Graphs.csproj.AssemblyReference.cache
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.g.resources
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.aboutForm.resources
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.Form1.resources
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.Properties.Resources.resources
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.SelectEdgeForm.resources
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\Graphs.csproj.GenerateResource.cache
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\Graphs.csproj.CoreCompileInputs.cache
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.exe
+C:\Users\Anna\Source\Repos\Graphs\drawgraphProgram\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.pdb

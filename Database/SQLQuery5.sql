@@ -1,1 +1,0 @@
-ALTER TABLE Aircraft_routes DROP COLUMN date_dispatch, date_arrival;

@@ -1,0 +1,42 @@
+C:\Users\lebed\Source\Repos\ExpertSystem\bin\Debug\ExpertSystem.exe.config
+C:\Users\lebed\Source\Repos\ExpertSystem\bin\Debug\ExpertSystem.exe
+C:\Users\lebed\Source\Repos\ExpertSystem\bin\Debug\ExpertSystem.pdb
+C:\Users\lebed\Source\Repos\ExpertSystem\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.csproj.AssemblyReference.cache
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.g.resources
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.Form1.resources
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.Form2.resources
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.Properties.Resources.resources
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.csproj.GenerateResource.cache
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.csproj.CoreCompileInputs.cache
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.csproj.CopyComplete
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.exe
+C:\Users\lebed\Source\Repos\ExpertSystem\obj\Debug\ExpertSystem.pdb
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\bin\Debug\ExpertSystem.exe.config
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\bin\Debug\ExpertSystem.exe
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\bin\Debug\ExpertSystem.pdb
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.csproj.AssemblyReference.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.g.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.Form1.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.Form2.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.Properties.Resources.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.csproj.GenerateResource.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.csproj.CoreCompileInputs.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.csproj.CopyComplete
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.exe
+C:\Users\lebed\source\repos\ExpertSystem — копия (2)\obj\Debug\ExpertSystem.pdb
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\bin\Debug\ExpertSystem.exe.config
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\bin\Debug\ExpertSystem.exe
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\bin\Debug\ExpertSystem.pdb
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.csproj.AssemblyReference.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.g.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.Form1.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.Form2.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.Properties.Resources.resources
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.csproj.GenerateResource.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.csproj.CoreCompileInputs.cache
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.csproj.CopyComplete
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.exe
+C:\Users\lebed\source\repos\ExpertSystem — копия (2) — копия\obj\Debug\ExpertSystem.pdb
